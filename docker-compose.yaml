@@ -3,10 +3,8 @@
 services:
   db:
     image: postgres:15
-    environment:
-      POSTGRES_DB: lacrei_db
-      POSTGRES_USER: lacrei_user
-      POSTGRES_PASSWORD: lacrei_password
+    env_file:
+      - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
@@ -19,8 +17,8 @@ services:
       - .:/app
     ports:
       - "8000:8000"
-    environment:
-      DATABASE_URL: postgres://lacrei_user:lacrei_password@db:5432/lacrei_db
+    env_file:
+      - .env
     depends_on:
       - db
 
