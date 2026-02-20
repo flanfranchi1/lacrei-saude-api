@@ -1,0 +1,15 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Ambientes virtuais e ferramentas locais
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Banco de dados local padrao
+db.sqlite3
+
+# Arquivos de variaveis de ambiente (credenciais)
+.env
