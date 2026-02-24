@@ -1,0 +1,56 @@
+name: Django API CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:15
+        env:
+          POSTGRES_DB: lacrei_test_db
+          POSTGRES_USER: test_user
+          POSTGRES_PASSWORD: test_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      POSTGRES_DB: lacrei_test_db
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: test_password
+      DATABASE_URL: postgres://test_user:test_password@localhost:5432/lacrei_test_db
+      SECRET_KEY: fake_secret_key_for_testing_only_123
+      DEBUG: True
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.14
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.14"
+
+    - name: Install Poetry
+      run: curl -sSL https://install.python-poetry.org | python3 -
+
+    - name: Install Dependencies
+      run: |
+        export PATH="$HOME/.local/bin:$PATH"
+        poetry config virtualenvs.create false
+        poetry install --no-interaction --no-root
+
+    - name: Run Django Tests
+      run: |
+        python manage.py test api
