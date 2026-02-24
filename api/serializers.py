@@ -23,5 +23,5 @@ class HealthProfessionalSerializer(serializers.ModelSerializer):
 class AppointmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appointment
-        fields = ['id', 'professional', 'appointment_date']
+        fields = ['id', 'health_professional', 'appointment_date']
         read_only_fields = ['id']

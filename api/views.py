@@ -18,4 +18,4 @@ class AppointmentViewSet(viewsets.ModelViewSet):
     queryset = Appointment.objects.all()
     serializer_class = AppointmentSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['professional']
+    filterset_prolds = ['health_professional']
