@@ -52,9 +52,7 @@ jobs:
         poetry install --no-interaction --no-root
 
     - name: Run Ruff Linter
-        run: |
-          ruff check .
+      run: ruff check .
 
     - name: Run Django Tests
-      run: |
-        python manage.py test api
+      run: python manage.py test api
