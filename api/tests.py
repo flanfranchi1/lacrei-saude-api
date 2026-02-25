@@ -1,10 +1,12 @@
 from datetime import timedelta
+
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
-from rest_framework.test import APITestCase
 from rest_framework import status
-from .models import HealthProfessional, Appointment
+from rest_framework.test import APITestCase
+
+from .models import Appointment, HealthProfessional
 
 
 class HealthProfessionalTests(APITestCase):

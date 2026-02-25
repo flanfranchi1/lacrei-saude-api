@@ -1,6 +1,7 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from .views import HealthProfessionalViewSet, AppointmentViewSet
+
+from .views import AppointmentViewSet, HealthProfessionalViewSet
 
 router = DefaultRouter()
 router.register(r'professionals', HealthProfessionalViewSet, basename='professional')

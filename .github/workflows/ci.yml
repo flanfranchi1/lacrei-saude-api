@@ -51,6 +51,10 @@ jobs:
         poetry config virtualenvs.create false
         poetry install --no-interaction --no-root
 
+    - name: Run Ruff Linter
+        run: |
+          ruff check .
+
     - name: Run Django Tests
       run: |
         python manage.py test api

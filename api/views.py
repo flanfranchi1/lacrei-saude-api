@@ -1,8 +1,10 @@
-from rest_framework import viewsets, status
-from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import HealthProfessional, Appointment
-from .serializers import HealthProfessionalSerializer, AppointmentSerializer
+from rest_framework import status, viewsets
+from rest_framework.response import Response
+
+from .models import Appointment, HealthProfessional
+from .serializers import AppointmentSerializer, HealthProfessionalSerializer
+
 
 class HealthProfessionalViewSet(viewsets.ModelViewSet):
     queryset = HealthProfessional.objects.all()
